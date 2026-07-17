@@ -1,16 +1,11 @@
-import type { NavAction, NavItem } from "@/types/nav"
-import { Search, UserRound } from "lucide-react"
+import type { NavItem } from "@/types/nav"
 
 export const navItems: NavItem[] = [
   { label: "Home", href: "/#new-arrivals" },
   { label: "Shop", href: "/#new-arrivals" },
   { label: "Collections", href: "/#new-arrivals" },
-  { label: "About Us", href: "/#footer" },
+  { label: "About Us", href: "/#new-arrivals" },
   { label: "Contact", href: "/contact" },
 ]
 
-export const navActions: NavAction[] = [
-  { label: "Search", href: "/", icon: Search },
-  { label: "Account", href: "/", icon: UserRound },
-]
 
