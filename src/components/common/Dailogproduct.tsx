@@ -72,7 +72,10 @@ export default function Dailogproduct() {
                 </div>
             </div>
 
-            <div className="relative mt-8 flex min-h-16 w-full flex-col items-center justify-center gap-3 bg-card px-4 py-5 min-[360px]:px-6 sm:mt-10 sm:flex-row sm:gap-0 sm:py-5 lg:px-8">
+            <div
+                id="new-arrivals"
+                className="relative mt-8 flex min-h-16 w-full scroll-mt-24 flex-col items-center justify-center gap-3 bg-card px-4 py-5 min-[360px]:px-6 sm:mt-10 sm:flex-row sm:gap-0 sm:py-5 lg:px-8"
+            >
                 <h2 className="text-center text-2xl font-black uppercase leading-none min-[360px]:text-3xl">
                     New Arrivals
                 </h2>

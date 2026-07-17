@@ -70,7 +70,7 @@ export function Footer() {
                         <Button
                             type="submit"
                             aria-label="Subscribe"
-                            className="inline-flex w-14 items-center justify-center border-l border-white/20 text-white transition-colors hover:bg-white hover:text-black"
+                            className="inline-flex h-full w-14 items-center justify-center rounded-none border-l border-white/20 bg-transparent px-0 text-white transition-colors hover:bg-white hover:text-black"
                         >
                             <ArrowRight className="size-6" strokeWidth={2.5} />
                         </Button>
