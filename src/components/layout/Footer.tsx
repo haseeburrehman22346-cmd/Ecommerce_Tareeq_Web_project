@@ -6,7 +6,10 @@ import { Button } from "@/components/ui/button";
 
 export function Footer() {
     return (
-        <footer className="bg-[#070707] px-5 py-10 text-white sm:px-10 lg:px-14">
+        <footer
+            id="footer"
+            className="scroll-mt-24 bg-[#070707] px-5 py-10 text-white sm:px-10 lg:px-14"
+        >
             <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr_1.6fr] md:gap-8">
                 <div>
                     <Link href="/" aria-label="Tareeq home" className="inline-block">

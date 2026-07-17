@@ -1,10 +1,11 @@
 import Link from "next/link";
 
-const whatsappUrl = "https://wa.me/923025706287";
+import { WHATSAPP_URL } from "@/data/contact";
+
 export function WhatsAppButton() {
   return (
     <Link
-      href={whatsappUrl}
+      href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

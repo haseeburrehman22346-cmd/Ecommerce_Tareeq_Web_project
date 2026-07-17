@@ -113,16 +113,64 @@ function Carousel({
     if (!api || !autoplay) return
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
-    const interval = setInterval(() => {
-      if (document.hidden) return
-      if (api.canScrollNext()) {
-        api.scrollNext()
-      } else {
-        api.scrollTo(0)
-      }
-    }, autoplayDelay)
+    const root = api.rootNode()
+    let timer: ReturnType<typeof setInterval> | null = null
+    let paused = false
 
-    return () => clearInterval(interval)
+    const start = () => {
+      if (timer || paused) return
+      timer = setInterval(() => {
+        if (document.hidden) return
+        if (api.canScrollNext()) {
+          api.scrollNext()
+        } else {
+          api.scrollTo(0)
+        }
+      }, autoplayDelay)
+    }
+
+    const stop = () => {
+      if (!timer) return
+      clearInterval(timer)
+      timer = null
+    }
+
+    const pause = () => {
+      paused = true
+      stop()
+    }
+
+    const resume = () => {
+      paused = false
+      start()
+    }
+
+    // Give the full delay after any slide change, so a manual scroll is not
+    // cut short by an autoplay tick that was already mid-countdown.
+    const restart = () => {
+      stop()
+      start()
+    }
+
+    start()
+    api.on("pointerDown", pause)
+    api.on("pointerUp", resume)
+    api.on("select", restart)
+    root.addEventListener("mouseenter", pause)
+    root.addEventListener("mouseleave", resume)
+    root.addEventListener("focusin", pause)
+    root.addEventListener("focusout", resume)
+
+    return () => {
+      stop()
+      api.off("pointerDown", pause)
+      api.off("pointerUp", resume)
+      api.off("select", restart)
+      root.removeEventListener("mouseenter", pause)
+      root.removeEventListener("mouseleave", resume)
+      root.removeEventListener("focusin", pause)
+      root.removeEventListener("focusout", resume)
+    }
   }, [api, autoplay, autoplayDelay])
 
   return (
