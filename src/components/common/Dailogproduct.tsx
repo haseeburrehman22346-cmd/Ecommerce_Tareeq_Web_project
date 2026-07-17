@@ -125,9 +125,9 @@ export default function Dailogproduct() {
                             </span>
                         </DialogTrigger>
 
-                        <DialogContent className="max-w-[calc(100%-2rem)] gap-0 overflow-hidden rounded-none p-0 sm:max-w-3xl">
+                        <DialogContent className="max-h-[calc(100dvh-2rem)] max-w-[calc(100%-2rem)] gap-0 overflow-y-auto rounded-none p-0 sm:max-w-3xl">
                             <div className="grid bg-card md:grid-cols-[minmax(0,1fr)_minmax(280px,0.9fr)]">
-                                <div className="relative aspect-[4/5] min-h-[320px] bg-muted md:min-h-[460px]">
+                                <div className="relative h-[38dvh] min-h-[180px] bg-muted md:aspect-[4/5] md:h-auto md:min-h-[460px]">
                                     <Image
                                         src={item.image}
                                         alt={item.alt}
@@ -136,16 +136,16 @@ export default function Dailogproduct() {
                                         className="object-contain"
                                     />
                                 </div>
-                                <div className="flex flex-col justify-center p-6 sm:p-8">
+                                <div className="flex flex-col justify-center p-5 sm:p-8">
                                     <DialogHeader>
-                                        <DialogTitle className="text-2xl font-black uppercase leading-none sm:text-3xl">
+                                        <DialogTitle className="text-xl font-black uppercase leading-none min-[360px]:text-2xl sm:text-3xl">
                                             {item.title}
                                         </DialogTitle>
                                         <DialogDescription className="text-base font-bold text-foreground/75">
                                             {item.price}
                                         </DialogDescription>
                                     </DialogHeader>
-                                    <p className="mt-6 text-sm font-semibold leading-6 text-foreground/75">
+                                    <p className="mt-4 text-sm font-semibold leading-6 text-foreground/75 sm:mt-6">
                                         Premium Tareeq everyday wear with clean styling, soft feel,
                                         and a confident streetwear fit.
                                     </p>
@@ -154,7 +154,7 @@ export default function Dailogproduct() {
                                         nativeButton
                                         size="lg"
                                         onClick={() => openWhatsAppOrder(item)}
-                                        className="mt-7 h-10 w-full rounded-none bg-primaryblack px-6 text-[11px] font-black uppercase text-primary-foreground hover:bg-foreground/80 sm:w-auto"
+                                        className="mt-5 h-10 w-full shrink-0 rounded-none bg-primaryblack px-6 text-[11px] font-black uppercase text-primary-foreground hover:bg-foreground/80 sm:mt-7 md:w-auto"
                                     >
                                         Shop Now
                                     </Button>
