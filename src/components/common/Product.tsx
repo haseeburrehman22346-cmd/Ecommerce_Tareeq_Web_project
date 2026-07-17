@@ -6,6 +6,8 @@ import {
     Carousel,
     CarouselContent,
     CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
 } from "@/components/ui/carousel";
 import { categoryItems } from "@/data/product";
 import { reviews } from "@/data/product";
@@ -18,9 +20,9 @@ export default function Product() {
             <div className="w-full py-8">
                 <div className="w-full">
                     <Carousel
-                        opts={{ align: "start", loop: true, watchDrag: false }}
+                        opts={{ align: "start", loop: true }}
                         autoplay
-                        className="w-full"
+                        className="group/carousel w-full"
                         aria-label="Shop categories"
                     >
                         <CarouselContent className="-ml-2">
@@ -31,14 +33,16 @@ export default function Product() {
                                 >
                                     <Link
                                         href={item.href}
-                                        className="group relative block aspect-[5/4] overflow-hidden bg-muted"
+                                        draggable={false}
+                                        className="group relative block aspect-[5/4] cursor-grab overflow-hidden bg-muted active:cursor-grabbing"
                                     >
                                         <Image
                                             src={item.image}
                                             alt={item.alt}
                                             fill
+                                            draggable={false}
                                             sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 25vw"
-                                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                            className="select-none object-cover transition-transform duration-300 group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-foreground/45 via-foreground/5 to-transparent" />
                                         <div className="absolute inset-x-0 bottom-0 p-5 text-primary-foreground">
@@ -53,6 +57,9 @@ export default function Product() {
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
+
+                        <CarouselPrevious className="left-3 size-10 border-none bg-card/80 text-foreground opacity-0 transition-opacity hover:bg-card focus-visible:opacity-100 group-hover/carousel:opacity-100 sm:left-5" />
+                        <CarouselNext className="right-3 size-10 border-none bg-card/80 text-foreground opacity-0 transition-opacity hover:bg-card focus-visible:opacity-100 group-hover/carousel:opacity-100 sm:right-5" />
                     </Carousel>
 
                     <Dailogproduct />

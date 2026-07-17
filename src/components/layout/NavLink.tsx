@@ -4,8 +4,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { NavLink } from "@/components/common/NavLink";
-import { cn } from "@/lib/utils";
-import { navItems, navActions } from "@/data/navbar";
+import { navItems } from "@/data/navbar";
 import { Button } from "@base-ui/react";
 
 export function Navbar() {
@@ -31,7 +30,7 @@ export function Navbar() {
         Free shipping on orders over $100
       </div>
 
-      <nav className="mx-auto grid min-h-16 w-full max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-2 px-3 min-[360px]:min-h-20 min-[360px]:gap-4 min-[360px]:px-4 sm:px-8 md:grid-cols-[1fr_auto_1fr] lg:px-14">
+      <nav className="mx-auto flex min-h-16 w-full max-w-7xl items-center justify-between gap-2 px-3 min-[360px]:min-h-20 min-[360px]:gap-4 min-[360px]:px-4 sm:px-8 lg:px-14">
         <Button
           type="button"
           aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -51,32 +50,12 @@ export function Navbar() {
 
         <Link
           href="/"
-          className="justify-self-start text-center md:justify-self-center text-2xl font-black uppercase leading-none tracking-normal min-[360px]:text-3xl"
+          className="text-2xl font-black uppercase leading-none tracking-normal min-[360px]:text-3xl"
           aria-label="Tareeq home"
           onClick={closeMenu}
         >
           TAREEQ
         </Link>
-
-        <div className="flex items-center justify-end gap-1 min-[360px]:gap-3 sm:gap-4">
-          {navActions.map(({ href, label, icon: Icon, badge }) => (
-            <Link
-              key={label}
-              href={href}
-              aria-label={label}
-              className={cn(
-                "relative inline-flex size-9 items-center justify-center min-[360px]:size-11 text-thread-nav-foreground transition-colors hover:text-thread-nav-hover"
-              )}
-            >
-              <Icon className="size-5 min-[360px]:size-6" strokeWidth={2.5} />
-              {badge ? (
-                <span className="absolute right-0 top-1 flex size-4 items-center justify-center rounded-full bg-thread-nav-foreground text-[10px] font-bold leading-none text-thread-nav">
-                  {badge}
-                </span>
-              ) : null}
-            </Link>
-          ))}
-        </div>
       </nav>
 
       {isMenuOpen ? (
@@ -92,8 +71,13 @@ export function Navbar() {
             className="fixed left-0 top-0 z-50 flex h-dvh w-[280px] max-w-[82vw] flex-col bg-thread-nav px-5 py-5 shadow-2xl md:hidden"
           >
             <div className="mb-8 flex items-center justify-between">
-              <Link href="/" aria-label="Tareeq home" onClick={closeMenu}>
-
+              <Link
+                href="/"
+                aria-label="Tareeq home"
+                onClick={closeMenu}
+                className="text-2xl font-black uppercase leading-none tracking-normal"
+              >
+                TAREEQ
               </Link>
               <Button
                 type="button"
