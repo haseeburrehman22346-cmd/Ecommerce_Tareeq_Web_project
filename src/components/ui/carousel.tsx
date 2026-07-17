@@ -19,6 +19,8 @@ type CarouselProps = {
   plugins?: CarouselPlugin
   orientation?: "horizontal" | "vertical"
   setApi?: (api: CarouselApi) => void
+  autoplay?: boolean
+  autoplayDelay?: number
 }
 
 type CarouselContextProps = {
@@ -47,6 +49,8 @@ function Carousel({
   opts,
   setApi,
   plugins,
+  autoplay = false,
+  autoplayDelay = 3000,
   className,
   children,
   ...props
@@ -104,6 +108,22 @@ function Carousel({
       api?.off("select", onSelect)
     }
   }, [api, onSelect])
+
+  React.useEffect(() => {
+    if (!api || !autoplay) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
+    const interval = setInterval(() => {
+      if (document.hidden) return
+      if (api.canScrollNext()) {
+        api.scrollNext()
+      } else {
+        api.scrollTo(0)
+      }
+    }, autoplayDelay)
+
+    return () => clearInterval(interval)
+  }, [api, autoplay, autoplayDelay])
 
   return (
     <CarouselContext.Provider

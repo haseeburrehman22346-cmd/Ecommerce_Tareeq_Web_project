@@ -6,8 +6,6 @@ import {
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
 } from "@/components/ui/carousel";
 import { categoryItems } from "@/data/product";
 import { reviews } from "@/data/product";
@@ -20,7 +18,8 @@ export default function Product() {
             <div className="w-full py-8">
                 <div className="w-full">
                     <Carousel
-                        opts={{ align: "start", dragFree: true, loop: true }}
+                        opts={{ align: "start", loop: true, watchDrag: false }}
+                        autoplay
                         className="w-full"
                         aria-label="Shop categories"
                     >
@@ -54,8 +53,6 @@ export default function Product() {
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
-                        <CarouselPrevious className="left-2 hidden bg-background/90 sm:inline-flex" />
-                        <CarouselNext className="right-2 hidden bg-background/90 sm:inline-flex" />
                     </Carousel>
 
                     <Dailogproduct />
